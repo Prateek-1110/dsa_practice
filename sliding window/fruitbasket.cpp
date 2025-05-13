@@ -1,4 +1,5 @@
-//https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
+// ques is about finding longest subarray with atmost  2 unique elements
+//https://leetcode.com/problems/fruit-into-baskets/
 #include <bits/stdc++.h>
 #define cia(x) for(int i = 0;i<x.size();i++)cin>>x[i];
 #define ll long long
@@ -13,18 +14,22 @@
 #define bakchodi ios_base::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
 using namespace std;
 void solve() {
-    string s ; cin>>s;
-    vi v(256,-1);
-    int left = 0 ,right = 0;
-    int n = s.size();
-    int len = 0;
-    while(right<n){
-        if(v[s[right]]!=-1) left = max(v[s[right]]+1,left);
-        v[s[right]]=right;
-        len  = max(len , right-left+1);
-        right++;
+    int n ; cin>>n;
+    vi v(n); cia(v);
+    int l=0,r=0,mxlen=0; map<int,int>mpp;
+    while(r<n){
+        mpp[v[r]]++;
+        while(mpp.size()>2){
+             mpp[v[l]]--;
+                if(mpp[v[l]]==0)mpp.erase(mpp[v[l]]);
+                l++;
+        }
+        if(mpp.size()<=2){
+            mxlen=max(mxlen,r-l+1);
+        }
+        r++;
     }
-    cout<<len;
+    cout<<mxlen;
 }
 int main() {
     bakchodi;

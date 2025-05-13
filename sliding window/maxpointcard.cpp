@@ -1,3 +1,4 @@
+//https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/description/
 #include <bits/stdc++.h>
 #define cia(x) for(int i = 0;i<x.size();i++)cin>>x[i];
 #define ll long long
